@@ -1,5 +1,7 @@
 import TableRow from "./TableRow";
 import "../App.css";
+import Delete from "./Delete";
+import Edit from "./Edit";
 
 function Table({ items, columns }) {
   return (
