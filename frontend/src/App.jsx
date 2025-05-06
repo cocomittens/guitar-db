@@ -24,6 +24,8 @@ function App() {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/create-Song" element={<CreateSongPage />}></Route>
           <Route path="/edit-Song/:id" element={<EditSongPage />}></Route>
+          <Route path="/labels" element={<EditSongPage />}></Route>
+          <Route path="/students" element={<EditSongPage />}></Route>
         </Routes>
       </Router>
 

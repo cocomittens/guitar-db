@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SongTable from "../components/SongTable";
 import { Link } from "react-router-dom";
-import { song_data } from "../mockData";
+import Table from "../components/Table";
+import { song_data, song_columns } from "../mockData";
 
 function HomePage({ setSongToEdit }) {
   const [songs, setSongs] = useState([]);
@@ -28,7 +29,7 @@ function HomePage({ setSongToEdit }) {
       <Link to="/create-Song">
         <button>Create Song</button>
       </Link>
-      <SongTable songs={song_data}></SongTable>
+      <Table items={song_data} columns={song_columns} />
     </>
   );
 }
