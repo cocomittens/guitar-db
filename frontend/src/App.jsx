@@ -4,6 +4,8 @@ import HomePage from "./pages/HomePage";
 import CreateSongPage from "./pages/CreateSongPage";
 import EditSongPage from "./pages/EditSongPage";
 import Navigation from "./components/Navigation";
+import StudentPage from "./pages/StudentPage";
+import LabelPage from "./pages/LabelPage";
 
 function App() {
   return (
@@ -24,8 +26,8 @@ function App() {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/create-Song" element={<CreateSongPage />}></Route>
           <Route path="/edit-Song/:id" element={<EditSongPage />}></Route>
-          <Route path="/labels" element={<EditSongPage />}></Route>
-          <Route path="/students" element={<EditSongPage />}></Route>
+          <Route path="/labels" element={<LabelPage />}></Route>
+          <Route path="/students" element={<StudentPage />}></Route>
         </Routes>
       </Router>
 

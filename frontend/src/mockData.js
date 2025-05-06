@@ -34,3 +34,36 @@ export const song_columns = [
   "Difficulty",
   "Release Year",
 ];
+
+export const student_data = [
+  {
+    student_id: 1,
+    first_name: "Juno",
+    last_name: "Wilder",
+  },
+  {
+    student_id: 2,
+    first_name: "Luna",
+    last_name: "Wilder",
+  },
+  {
+    student_id: 3,
+    first_name: "Liam",
+    last_name: "Smith",
+  },
+  {
+    student_id: 4,
+    first_name: "Olivia",
+    last_name: "Johnson",
+  },
+];
+
+export const student_columns = ["Student ID", "First Name", "Last Name"];
+
+export const label_data = [
+  { id: 1, name: "District Records" },
+  { id: 2, name: "Power Records" },
+  { id: 3, name: "Shasta" },
+];
+
+export const label_columns = ["Label ID", "Label Name"];

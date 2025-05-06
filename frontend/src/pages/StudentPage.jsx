@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SongTable from "../components/SongTable";
 import { Link } from "react-router-dom";
-import { song_data, song_columns } from "../mockData";
+import Table from "../components/Table";
+import { student_data, student_columns } from "../mockData";
 
 function HomePage({ setSongToEdit }) {
   const [songs, setSongs] = useState([]);
@@ -25,8 +26,7 @@ function HomePage({ setSongToEdit }) {
       <h2>Current Students</h2>
       <p>Browse Available Songs by Genre, Artist, Relase Year, etc</p>
       <p>Save Your Progress Using Your Student ID</p>
-
-      <SongTable items={song_data} columns={song_columns}></SongTable>
+      <Table items={student_data} columns={student_columns} />
     </>
   );
 }

@@ -1,10 +1,10 @@
 import "../App.css";
 
-function TableRow({ columns }) {
+function TableRow({ item }) {
   return (
     <tr>
-      {columns.map((column, index) => (
-        <td key={index}>{column}</td>
+      {Object.keys(item).map((key, index) => (
+        <td key={index}>{item[key]}</td>
       ))}
     </tr>
   );

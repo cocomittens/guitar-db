@@ -1,4 +1,4 @@
-import SongRow from "./SongRow";
+import TableRow from "./TableRow";
 import "../App.css";
 
 function Table({ items, columns }) {
@@ -6,14 +6,14 @@ function Table({ items, columns }) {
     <table>
       <thead>
         <tr>
-          {columns.map((column, index) => (
-            <th key={index}>{column}</th>
+          {columns.map((column, i) => (
+            <th key={i}>{column}</th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {items.map((song) => (
-          <SongRow song={song} key={song._id} />
+        {items.map((item, i) => (
+          <TableRow key={i} item={item} />
         ))}
       </tbody>
     </table>

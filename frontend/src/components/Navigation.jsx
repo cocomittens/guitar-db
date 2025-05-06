@@ -6,7 +6,7 @@ function Navigation() {
       <Link to="/">
         <button>Songs</button>
       </Link>
-      <Link to="">
+      <Link to="/students">
         <button>Students</button>
       </Link>
       <Link to="">
@@ -18,7 +18,7 @@ function Navigation() {
       <Link to="">
         <button>Genres</button>
       </Link>
-      <Link to="">
+      <Link to="/labels">
         <button>Labels</button>
       </Link>
     </nav>
