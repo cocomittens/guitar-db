@@ -29,7 +29,7 @@ function HomePage({ setSongToEdit }) {
       <Link to="/create-Song">
         <button>Create Song</button>
       </Link>
-      <Table items={song_data} columns={song_columns} />
+      <Table items={song_data} columns={song_columns} controls={true} />
     </>
   );
 }

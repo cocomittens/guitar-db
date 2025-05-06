@@ -3,7 +3,7 @@ import "../App.css";
 import Delete from "./Delete";
 import Edit from "./Edit";
 
-function Table({ items, columns }) {
+function Table({ items, columns, controls }) {
   return (
     <table>
       <thead>
@@ -15,7 +15,7 @@ function Table({ items, columns }) {
       </thead>
       <tbody>
         {items.map((item, i) => (
-          <TableRow key={i} item={item} />
+          <TableRow key={i} item={item} controls={controls} />
         ))}
       </tbody>
     </table>
