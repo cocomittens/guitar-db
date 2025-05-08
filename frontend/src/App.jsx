@@ -17,7 +17,11 @@ function App() {
       <header>
         <h1>Studio 83 Guitar Songs Database</h1>
         <img
+<<<<<<< HEAD
           src="https://i.imgur.com/b7OqZgW.png"
+=======
+          src="../beaver_mascot.png"
+>>>>>>> db04ea7184a6d09c5ef80d3169bc2968f6a268bc
           alt="a cute cartoon beaver playing guitar"
           class="responsive-image"
         ></img>
