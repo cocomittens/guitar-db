@@ -13,10 +13,6 @@
   },
   "dependencies": {
     "express": "^4.21.2",
-<<<<<<< HEAD
-=======
-    "i": "^0.3.7",
->>>>>>> db04ea7184a6d09c5ef80d3169bc2968f6a268bc
     "nodemon": "^3.1.9",
     "npm": "^11.3.0",
     "react": "^18.3.1",
@@ -29,10 +25,6 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
     "globals": "^15.11.0",
-<<<<<<< HEAD
     "vite": "4.5.9"
-=======
-    "vite": "^4.5.9"
->>>>>>> db04ea7184a6d09c5ef80d3169bc2968f6a268bc
   }
 }
