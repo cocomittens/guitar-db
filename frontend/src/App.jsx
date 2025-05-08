@@ -17,11 +17,11 @@ function App() {
       <header>
         <h1>Studio 83 Guitar Songs Database</h1>
         <img
-          src="beaver_mascot.png"
+          src="../beaver_mascot.png"
           alt="a cute cartoon beaver playing guitar"
           class="responsive-image"
         ></img>
-        <p>Full Stack MERN App and SQL Demonstration</p>
+        <p>Full Stack SQL Demonstration</p>
       </header>
 
       <Router>
