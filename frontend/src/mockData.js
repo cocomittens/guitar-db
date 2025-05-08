@@ -1,11 +1,11 @@
 export const song_data = [
-  {song_id: 1, album: "After July", genre: "Country", artist: "During June", title: "Hot August Rain", bpm: 90, difficulty: 0.5, capo: 0, chords: "A, E, D"},
-  {song_id: 2, album: "Now That's What I Call Covid!", genre: "Pop", artist: "#Hashtag", title: "Corona Rumba", bpm: 130, difficulty: 0.2, capo: 3, chords: "D, C, G"},
-  {song_id: 3, album: "20 Years of Screaming", genre: "Rock, Metal", artist: "Mega Charged", title: "Metal Mouth", bpm: 130, difficulty: 0.7, capo: 3, chords: "Am, F, C, G"},
+  {song_id: 1, album: "After July", genre: "Country", artist: "During June", title: "Hot August Rain", bpm: 90, difficulty: 0.5, capo: 0, chords: "A, E, D", musical_key: "C"},
+  {song_id: 2, album: "Now That's What I Call Covid!", genre: "Pop", artist: "#Hashtag", title: "Corona Rumba", bpm: 130, difficulty: 0.2, capo: 3, chords: "D, C, G", musical_key: "E"},
+  {song_id: 3, album: "20 Years of Screaming", genre: "Rock, Metal", artist: "Mega Charged", title: "Metal Mouth", bpm: 130, difficulty: 0.7, capo: 3, chords: "Am, F, C, G", musical_key: "G"},
 ];
 
 export const song_columns = [
-  "Song ID", "Album", "Genre", "Artist", "Title", "BPM", "Difficulty", "Capo", "Chords"
+  "Song ID", "Album", "Genre", "Artist", "Title", "BPM", "Difficulty", "Capo", "Chords", "Key"
 ];
 
 export const student_data = [
