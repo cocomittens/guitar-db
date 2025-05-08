@@ -1,7 +1,7 @@
 export const song_data = [
   {song_id: 1, album: "After July", genre: "Country", artist: "During June", title: "Hot August Rain", bpm: 90, difficulty: 0.5, capo: 0, chords: "A, E, D"},
   {song_id: 2, album: "Now That's What I Call Covid!", genre: "Pop", artist: "#Hashtag", title: "Corona Rumba", bpm: 130, difficulty: 0.2, capo: 3, chords: "D, C, G"},
-  {song_id: 3, album: "20 Years of Screaming", genre: "Rock", artist: "Mega Charged", title: "Metal Mouth", bpm: 130, difficulty: 0.7, capo: 3, chords: "Am, F, C, G"},
+  {song_id: 3, album: "20 Years of Screaming", genre: "Rock, Metal", artist: "Mega Charged", title: "Metal Mouth", bpm: 130, difficulty: 0.7, capo: 3, chords: "Am, F, C, G"},
 ];
 
 export const song_columns = [
@@ -50,6 +50,13 @@ export const genre_data = [
   { _id: 1, name: "Rock" },
   { _id: 2, name: "Pop" },
   { _id: 3, name: "Country" },
+  { _id: 4, name: "Metal" },
+  { _id: 5, name: "Jazz" },
+  { _id: 6, name: "Blues" },
+  { _id: 7, name: "Folk" },
+  { _id: 8, name: "Hip Hop" },
+  { _id: 9, name: "R&B" },
+  { _id: 10, name: "Reggae" },
 ];
 
 export const genre_columns = ["Genre ID", "Name"];
@@ -85,3 +92,7 @@ export const song_students_data = [
   { song_id: 1, student_id: 2, song_title: 'Hot August Rain', student_name: 'Imari Brooks', is_learned: true },
   { song_id: 2, student_id: 2, song_title: 'Corona Rumba', student_name: 'Imari Brooks', is_learned: true },
 ]
+
+export const song_students_columns = [
+  "Song ID", "Student ID", "Song Title", "Student Name", "Learned"
+];
