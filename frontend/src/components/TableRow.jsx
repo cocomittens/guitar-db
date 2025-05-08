@@ -8,8 +8,12 @@ function TableRow({ item, controls }) {
       {Object.keys(item).map((key, index) => (
         <td key={index}>{item[key]}</td>
       ))}
-      {controls && <Edit />}
-      {controls && <Delete />}
+      {controls && (
+        <td>
+          <Edit SongId={item.SongId} />
+          <Delete SongId={item.SongId} />
+        </td>
+      )}
     </tr>
   );
 }

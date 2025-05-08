@@ -117,7 +117,8 @@ button {
   text-align: center;
   border: 0;
   font-size: 16px;
-  
+  padding: 0.25rem 0.5rem;
+  margin: 0.25rem;
 }
 
 input {
@@ -131,6 +132,42 @@ select {
   background-color: #00c4cc;
   color: #2b2f32b8;
   font-family: Gill Sans, Verdana;
+}
+
+.icon-button {
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Edit button */
+.icon-button.edit {
+  color: var(--accent-teal);
+  border: 2px solid var(--accent-teal);
+  border-radius: 8px;
+  margin: 0 0.25rem;
+}
+.icon-button.edit:hover {
+  background-color: var(--accent-teal);
+  color: var(--bg-cream);
+}
+
+/* Delete button */
+.icon-button.delete {
+  color: var(--accent-burgundy);
+  border: 2px solid var(--accent-burgundy);
+  border-radius: 8px;
+  margin: 0 0.25rem;
+}
+.icon-button.delete:hover {
+  background-color: var(--accent-burgundy);
+  color: var(--bg-cream);
 }
 
 

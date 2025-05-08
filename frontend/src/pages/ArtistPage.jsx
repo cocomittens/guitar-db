@@ -24,8 +24,7 @@ function ArtistPage({ setSongToEdit }) {
   return (
     <>
       <h2>Available Artists</h2>
-      <p>Browse Available Songs by Genre, Artist, Relase Year, etc</p>
-      <p>Save Your Progress Using Your Student ID</p>
+      <p>View current artists</p>
 
       <Table items={artist_data} columns={artist_columns} />
     </>
