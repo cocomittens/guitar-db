@@ -16,7 +16,7 @@ export const AddSongPage = () => {
   const navigate = useNavigate();
 
   const addSong = async () => {
-    const newSong = { title, artist, album, key, bpm, capo, difficulty, year, genre, chords };
+    const newSong = { title, artist, album, key, bpm, capo, difficulty, genre, chords };
     const response = await fetch("/Songs", {
       method: "POST",
       headers: { "Content-type": "application/json" },

@@ -20,5 +20,6 @@ app.get('*', (req, res) => {
 
 // Start the server and listen on the specified port
 app.listen(PORT, () => {
-    console.log(`Server running: http://classwork.engr.oregonstate.edu:${PORT}...`);
+    console.log(`Server running: http://classwork.engr.oregonstate.edu`);
 });
+

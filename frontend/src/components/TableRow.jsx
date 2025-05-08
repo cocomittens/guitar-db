@@ -13,7 +13,7 @@ function TableRow({ item, controls }) {
         <td key={index}>{typeof item[key] === 'boolean' ? capitalizeFirstLetter(item[key].toString()) : item[key]}</td>
       ))}
       {controls && (
-        <td>
+        <td id="actions">
           <Edit SongId={item.SongId} />
           <Delete SongId={item.SongId} />
         </td>
