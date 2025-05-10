@@ -15,7 +15,6 @@ function HomePage({ setSongToEdit }) {
     });
     const data = await response.json();
     setSongs(data);
-    console.log(data);
   };
 
   useEffect(() => {

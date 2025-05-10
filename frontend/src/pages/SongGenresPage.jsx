@@ -1,28 +1,27 @@
 import { useState, useEffect } from "react";
 import Table from "../components/Table";
-import { song_genres_data, song_genres_columns } from "../mockData";
+import { song_genres_columns } from "../mockData";
 
 function SongGenres() {
-  const [songs, setSongs] = useState([]);
-  //const navigate = useNavigate()
+  const [songGenres, setSongGenres] = useState([]);
 
-  /*Per MDN, default fetch() request is GET, adding redundant '{method: 'GET'}'
-    for illustrative purposes*/
-  const loadSongs = async () => {
-    const response = await fetch("/songs", { method: "GET" });
+  const loadSongGenres = async () => {
+    const response = await fetch("http://localhost:30594/song_genres", {
+      method: "GET",
+    });
     const data = await response.json();
-    setSongs(data);
+    setSongGenres(data);
   };
 
   useEffect(() => {
-    loadSongs();
+    loadSongGenres();
   }, []);
 
   return (
     <>
       <h2>Song Genres</h2>
       <p>View Genre(s) for each song.</p>
-      <Table items={song_genres_data} columns={song_genres_columns} />
+      <Table items={songGenres} columns={song_genres_columns} />
     </>
   );
 }

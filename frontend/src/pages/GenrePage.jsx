@@ -1,21 +1,20 @@
 import { useState, useEffect } from "react";
 import Table from "../components/Table";
-import { genre_data, genre_columns } from "../mockData";
+import { genre_columns } from "../mockData";
 
-function GenrePage({ setSongToEdit }) {
-  const [songs, setSongs] = useState([]);
-  //const navigate = useNavigate()
+function GenrePage() {
+  const [genres, setGenres] = useState([]);
 
-  /*Per MDN, default fetch() request is GET, adding redundant '{method: 'GET'}'
-    for illustrative purposes*/
-  const loadSongs = async () => {
-    const response = await fetch("/Songs", { method: "GET" });
+  const loadGenres = async () => {
+    const response = await fetch("http://localhost:30594/genres", {
+      method: "GET",
+    });
     const data = await response.json();
-    setSongs(data);
+    setGenres(data);
   };
 
   useEffect(() => {
-    loadSongs();
+    loadGenres();
   }, []);
 
   return (
@@ -23,7 +22,7 @@ function GenrePage({ setSongToEdit }) {
       <h2>Available Genres</h2>
       <p>View current genres</p>
 
-      <Table items={genre_data} columns={genre_columns} />
+      <Table items={genres} columns={genre_columns} />
     </>
   );
 }

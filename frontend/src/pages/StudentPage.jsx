@@ -3,19 +3,18 @@ import Table from "../components/Table";
 import { student_data, student_columns } from "../mockData";
 
 function StudentPage() {
-  const [songs, setSongs] = useState([]);
-  //const navigate = useNavigate()
+  const [students, setStudents] = useState([]);
 
-  /*Per MDN, default fetch() request is GET, adding redundant '{method: 'GET'}'
-    for illustrative purposes*/
-  const loadSongs = async () => {
-    const response = await fetch("/Songs", { method: "GET" });
+  const loadStudents = async () => {
+    const response = await fetch("http://localhost:30594/students", {
+      method: "GET",
+    });
     const data = await response.json();
-    setSongs(data);
+    setStudents(data);
   };
 
   useEffect(() => {
-    loadSongs();
+    loadStudents();
   }, []);
 
   return (
@@ -23,7 +22,7 @@ function StudentPage() {
       <h2>Current Students</h2>
       <p>Browse Available Songs by Genre, Artist, Relase Year, etc</p>
       <p>Save Your Progress Using Your Student ID</p>
-      <Table items={student_data} columns={student_columns} />
+      <Table items={students} columns={student_columns} />
     </>
   );
 }

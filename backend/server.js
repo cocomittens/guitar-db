@@ -16,6 +16,7 @@ const PORT = 30594;
 app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json()); // this is needed for post requests, good thing to know
 
+// Songs table
 app.get("/songs", async (req, res) => {
   try {
     const query = "SELECT * FROM Songs;";
@@ -103,6 +104,92 @@ app.delete("/songs/:id", async (req, res) => {
   } catch (error) {
     console.error("Error executing queries:", error);
     res.status(500).send("Could not delete song from the database.");
+  }
+});
+
+// Students table
+app.get("/students", async (req, res) => {
+  try {
+    const query = "SELECT * FROM Students;";
+    const [rows] = await db.query(query);
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error("Error executing queries:", error);
+    res.status(500).send("Could not retrieve students from the database.");
+  }
+});
+
+// Song Students table
+app.get("/student_songs", async (req, res) => {
+  try {
+    const query = "SELECT * FROM Song_Students;";
+    const [rows] = await db
+      .query(query)
+      .catch((err) => console.error("Error executing queries:", err));
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error("Error executing queries:", error);
+    res.status(500).send("Could not retrieve student songs from the database.");
+  }
+});
+
+// Song Genres table
+app.get("/song_genres", async (req, res) => {
+  try {
+    const query = "SELECT * FROM Song_Genres;";
+    const [rows] = await db.query(query);
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error("Error executing queries:", error);
+    res.status(500).send("Could not retrieve song genres from the database.");
+  }
+});
+
+// Albums table
+app.get("/albums", async (req, res) => {
+  try {
+    const query = "SELECT * FROM Albums;";
+    const [rows] = await db.query(query);
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error("Error executing queries:", error);
+    res.status(500).send("Could not retrieve albums from the database.");
+  }
+});
+
+// Artists table
+app.get("/artists", async (req, res) => {
+  try {
+    const query = "SELECT * FROM Artists;";
+    const [rows] = await db.query(query);
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error("Error executing queries:", error);
+    res.status(500).send("Could not retrieve artists from the database.");
+  }
+});
+
+// Genres table
+app.get("/genres", async (req, res) => {
+  try {
+    const query = "SELECT * FROM Genres;";
+    const [rows] = await db.query(query);
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error("Error executing queries:", error);
+    res.status(500).send("Could not retrieve genres from the database.");
+  }
+});
+
+// Labels table
+app.get("/labels", async (req, res) => {
+  try {
+    const query = "SELECT * FROM Labels;";
+    const [rows] = await db.query(query);
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error("Error executing queries:", error);
+    res.status(500).send("Could not retrieve labels from the database.");
   }
 });
 

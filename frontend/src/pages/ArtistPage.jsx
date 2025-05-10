@@ -3,19 +3,18 @@ import Table from "../components/Table";
 import { artist_data, artist_columns } from "../mockData";
 
 function ArtistPage() {
-  const [songs, setSongs] = useState([]);
-  //const navigate = useNavigate()
+  const [artists, setArtists] = useState([]);
 
-  /*Per MDN, default fetch() request is GET, adding redundant '{method: 'GET'}'
-    for illustrative purposes*/
-  const loadSongs = async () => {
-    const response = await fetch("/Songs", { method: "GET" });
+  const loadArtists = async () => {
+    const response = await fetch("http://localhost:30594/artists", {
+      method: "GET",
+    });
     const data = await response.json();
-    setSongs(data);
+    setArtists(data);
   };
 
   useEffect(() => {
-    loadSongs();
+    loadArtists();
   }, []);
 
   return (
@@ -23,7 +22,7 @@ function ArtistPage() {
       <h2>Available Artists</h2>
       <p>View current artists</p>
 
-      <Table items={artist_data} columns={artist_columns} />
+      <Table items={artists} columns={artist_columns} />
     </>
   );
 }

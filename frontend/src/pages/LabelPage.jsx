@@ -2,20 +2,19 @@ import { useState, useEffect } from "react";
 import Table from "../components/Table";
 import { label_data, label_columns } from "../mockData";
 
-function HomePage({ setSongToEdit }) {
-  const [songs, setSongs] = useState([]);
-  //const navigate = useNavigate()
+function LabelPage({ setSongToEdit }) {
+  const [labels, setLabels] = useState([]);
 
-  /*Per MDN, default fetch() request is GET, adding redundant '{method: 'GET'}'
-    for illustrative purposes*/
-  const loadSongs = async () => {
-    const response = await fetch("/Songs", { method: "GET" });
+  const loadLabels = async () => {
+    const response = await fetch("http://localhost:30594/labels", {
+      method: "GET",
+    });
     const data = await response.json();
-    setSongs(data);
+    setLabels(data);
   };
 
   useEffect(() => {
-    loadSongs();
+    loadLabels();
   }, []);
 
   return (
@@ -23,9 +22,9 @@ function HomePage({ setSongToEdit }) {
       <h2>Available Labels</h2>
       <p>View current labels</p>
 
-      <Table items={label_data} columns={label_columns} />
+      <Table items={labels} columns={label_columns} />
     </>
   );
 }
 
-export default HomePage;
+export default LabelPage;

@@ -52,7 +52,6 @@ export const AddSongPage = () => {
           <tr>
             <th>Album</th>
             <th>Genre</th>
-            <th>Artist</th>
             <th>Title</th>
             <th>BPM</th>
             <th>Difficulty</th>
@@ -72,7 +71,6 @@ export const AddSongPage = () => {
             </td>
             <td>
               <select
-                multiple
                 value={genre}
                 onChange={(e) =>
                   setgenre(
@@ -86,13 +84,6 @@ export const AddSongPage = () => {
                   </option>
                 ))}
               </select>
-            </td>
-            <td>
-              <input
-                type="text"
-                value={artist}
-                onChange={(e) => setartist(e.target.value)}
-              />
             </td>
             <td>
               <input

@@ -1,21 +1,20 @@
 import { useState, useEffect } from "react";
 import Table from "../components/Table";
-import { album_data, album_columns } from "../mockData";
+import { album_columns } from "../mockData";
 
 function AlbumPage() {
-  const [songs, setSongs] = useState([]);
-  //const navigate = useNavigate()
+  const [albums, setAlbums] = useState([]);
 
-  /*Per MDN, default fetch() request is GET, adding redundant '{method: 'GET'}'
-    for illustrative purposes*/
-  const loadSongs = async () => {
-    const response = await fetch("/Songs", { method: "GET" });
+  const loadAlbums = async () => {
+    const response = await fetch("http://localhost:30594/albums", {
+      method: "GET",
+    });
     const data = await response.json();
-    setSongs(data);
+    setAlbums(data);
   };
 
   useEffect(() => {
-    loadSongs();
+    loadAlbums();
   }, []);
 
   return (
@@ -23,7 +22,7 @@ function AlbumPage() {
       <h2>Available Albums</h2>
       <p>View current albums</p>
 
-      <Table items={album_data} columns={album_columns} />
+      <Table items={albums} columns={album_columns} />
     </>
   );
 }

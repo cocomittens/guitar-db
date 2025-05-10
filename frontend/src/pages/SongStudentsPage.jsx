@@ -3,19 +3,18 @@ import Table from "../components/Table";
 import { song_students_data, song_students_columns } from "../mockData";
 
 function SongStudents({ setSongToEdit }) {
-  const [songs, setSongs] = useState([]);
-  //const navigate = useNavigate()
+  const [songStudents, setSongStudents] = useState([]);
 
-  /*Per MDN, default fetch() request is GET, adding redundant '{method: 'GET'}'
-    for illustrative purposes*/
-  const loadSongs = async () => {
-    const response = await fetch("/Songs", { method: "GET" });
+  const loadSongStudents = async () => {
+    const response = await fetch("http://localhost:30594/student_songs", {
+      method: "GET",
+    });
     const data = await response.json();
-    setSongs(data);
+    setSongStudents(data);
   };
 
   useEffect(() => {
-    loadSongs();
+    loadSongStudents();
   }, []);
 
   return (
@@ -24,7 +23,7 @@ function SongStudents({ setSongToEdit }) {
       <p>
         View Songs Assigned to students and whether they have been learned yet
       </p>
-      <Table items={song_students_data} columns={song_students_columns} />
+      <Table items={songStudents} columns={song_students_columns} />
     </>
   );
 }
