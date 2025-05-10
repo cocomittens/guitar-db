@@ -9,6 +9,9 @@ function Navigation() {
       <Link to="/students">
         <button>Students</button>
       </Link>
+      <Link to="/song-students">
+        <button>Student Songs</button>
+      </Link>
       <Link to="/albums">
         <button>Albums</button>
       </Link>

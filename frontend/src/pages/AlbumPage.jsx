@@ -21,8 +21,7 @@ function AlbumPage() {
   return (
     <>
       <h2>Available Albums</h2>
-      <p>Browse Available Songs by Genre, Artist, Relase Year, etc</p>
-      <p>Save Your Progress Using Your Student ID</p>
+      <p>View current albums</p>
 
       <Table items={album_data} columns={album_columns} />
     </>

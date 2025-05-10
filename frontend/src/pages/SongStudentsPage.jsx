@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Table from "../components/Table";
-import { song_data, song_columns } from "../mockData";
+import { song_students_data, song_students_columns } from "../mockData";
 
 function SongStudents({ setSongToEdit }) {
   const [songs, setSongs] = useState([]);
@@ -24,7 +24,7 @@ function SongStudents({ setSongToEdit }) {
       <p>
         View Songs Assigned to students and whether they have been learned yet
       </p>
-      <Table items={song_data} columns={song_columns} controls={true} />
+      <Table items={song_students_data} columns={song_students_columns} />
     </>
   );
 }

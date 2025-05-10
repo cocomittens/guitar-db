@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { genre_data } from "../mockData";
 
 export const AddSongPage = () => {
   const [title, settitle] = useState("");
@@ -9,12 +10,13 @@ export const AddSongPage = () => {
   const [bpm, setbpm] = useState("");
   const [capo, setcapo] = useState("");
   const [difficulty, setdifficulty] = useState("");
-  const [year, setyear] = useState("");
+  const [genre, setgenre] = useState([]);
+  const [chords, setchords] = useState("");
 
   const navigate = useNavigate();
 
   const addSong = async () => {
-    const newSong = { title, artist, album, key, bpm, capo, difficulty, year };
+    const newSong = { title, artist, album, key, bpm, capo, difficulty, genre, chords };
     const response = await fetch("/Songs", {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -31,7 +33,7 @@ export const AddSongPage = () => {
   return (
     <div>
       <h2>Log New Song Below</h2>
-      <p>Release Year should be in YYYY format</p>
+      <p>Release Year should be in YYYY format. Insert chords separated by commas.</p>
       <table>
         <thead>
           <tr>
@@ -42,7 +44,8 @@ export const AddSongPage = () => {
             <th>BPM</th>
             <th>Capo</th>
             <th>Difficulty</th>
-            <th>Release Year</th>
+            <th>Genre</th>
+            <th>Chords</th>
           </tr>
         </thead>
         <tbody>
@@ -111,13 +114,25 @@ export const AddSongPage = () => {
               />
             </td>
             <td>
+              <select
+                type="text"
+                value={genre}
+                onChange={(e) => setgenre(Array.from(e.target.selectedOptions, opt => opt.value))}
+              >
+                {genre_data.map(g => (
+                  <option key={g.genre_id} value={g.name}>
+                    {g.name}
+                  </option>
+                ))}
+              </select>
+            </td>
+            <td>
               <input
-                type="number"
-                value={year}
-                onChange={(e) => setyear(e.target.valueAsNumber)}
+                type="text"
+                value={chords}
+                onChange={(e) => setchords(e.target.value)}
               />
             </td>
-
             <td classtitle="no-border-row">
               <button onClick={addSong}>Add</button>
             </td>

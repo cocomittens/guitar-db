@@ -25,7 +25,7 @@ function HomePage({ setSongToEdit }) {
       <p>Browse Available Songs by Genre, Artist, Relase Year, etc</p>
       <p>Save Your Progress Using Your Student ID</p>
       <Link to="/create-Song">
-        <button>Create Song</button>
+        <button style={{marginBottom: '1rem'}}>Create Song</button>
       </Link>
       <Table items={song_data} columns={song_columns} controls={true} />
     </>

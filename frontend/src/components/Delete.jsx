@@ -1,18 +1,16 @@
-import React from 'react';
-import {TiTrash } from "react-icons/ti";
-	
+import React from "react";
+import { TiTrash } from "react-icons/ti";
 
 function Delete({ SongId, onDelete }) {
-  
-  
   return (
-    <div>
-      <TiTrash  onClick={() => onDelete(SongId)} />
-
-    </div>
+    <button
+      type="button"
+      className="icon-button delete"
+      onClick={() => onDelete(SongId)}
+    >
+      <TiTrash />
+    </button>
   );
 }
 
-
-	
 export default Delete;

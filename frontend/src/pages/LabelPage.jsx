@@ -21,8 +21,7 @@ function HomePage({ setSongToEdit }) {
   return (
     <>
       <h2>Available Labels</h2>
-      <p>Browse Available Songs by Genre, Artist, Relase Year, etc</p>
-      <p>Save Your Progress Using Your Student ID</p>
+      <p>View current labels</p>
 
       <Table items={label_data} columns={label_columns} />
     </>

@@ -21,8 +21,7 @@ function GenrePage({ setSongToEdit }) {
   return (
     <>
       <h2>Available Genres</h2>
-      <p>Browse Available Songs by Genre, Artist, Relase Year, etc</p>
-      <p>Save Your Progress Using Your Student ID</p>
+      <p>View current genres</p>
 
       <Table items={genre_data} columns={genre_columns} />
     </>

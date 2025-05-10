@@ -11,6 +11,7 @@ function Table({ items, columns, controls }) {
           {columns.map((column, i) => (
             <th key={i}>{column}</th>
           ))}
+          {controls && <th>Actions</th>}
         </tr>
       </thead>
       <tbody>
