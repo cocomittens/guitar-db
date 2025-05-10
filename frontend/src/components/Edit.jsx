@@ -1,9 +1,13 @@
 import { TiPencil } from "react-icons/ti";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-function Edit({ SongId, onEdit }) {
+function Edit({ SongId, onEdit, song }) {
   return (
-    <Link to={`/edit-Song/${SongId}`} className="icon-button edit">
+    <Link
+      to={{ pathname: `/edit-Song/${SongId}` }}
+      state={{ song }}
+      className="icon-button edit"
+    >
       <TiPencil />
     </Link>
   );

@@ -10,12 +10,16 @@ function TableRow({ item, controls }) {
   return (
     <tr>
       {Object.keys(item).map((key, index) => (
-        <td key={index}>{typeof item[key] === 'boolean' ? capitalizeFirstLetter(item[key].toString()) : item[key]}</td>
+        <td key={index}>
+          {typeof item[key] === "boolean"
+            ? capitalizeFirstLetter(item[key].toString())
+            : item[key]}
+        </td>
       ))}
       {controls && (
         <td id="actions">
-          <Edit SongId={item.SongId} />
-          <Delete SongId={item.SongId} />
+          <Edit SongId={item.song_id} song={item} />
+          <Delete SongId={item.song_id} />
         </td>
       )}
     </tr>

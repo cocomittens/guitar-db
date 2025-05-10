@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { genre_data } from "../mockData";
 
 export const EditSongPage = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const passedSong = location.state?.song;
   const [title, settitle] = useState("");
   const [artist, setartist] = useState("");
   const [album, setalbum] = useState("");
@@ -17,24 +19,46 @@ export const EditSongPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // fetch existing song data
-    fetch(`/Songs/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        settitle(data.title);
-        setartist(data.artist);
-        setalbum(data.album);
-        setkey(data.key);
-        setbpm(data.bpm);
-        setcapo(data.capo);
-        setdifficulty(data.difficulty);
-        setgenre(data.genre || []);
-        setchords(data.chords || "");
-      });
-  }, [id]);
+    if (passedSong) {
+      // use passed data
+      settitle(passedSong.title);
+      setartist(passedSong.artist);
+      setalbum(passedSong.album);
+      setkey(passedSong.key);
+      setbpm(passedSong.bpm);
+      setcapo(passedSong.capo);
+      setdifficulty(passedSong.difficulty);
+      setgenre(passedSong.genre || []);
+      setchords(passedSong.chords || "");
+    } else {
+      fetch(`/Songs/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          settitle(data.title);
+          setartist(data.artist);
+          setalbum(data.album);
+          setkey(data.key);
+          setbpm(data.bpm);
+          setcapo(data.capo);
+          setdifficulty(data.difficulty);
+          setgenre(data.genre || []);
+          setchords(data.chords || "");
+        });
+    }
+  }, [id, passedSong]);
 
   const editSong = async () => {
-    const updated = { title, artist, album, key, bpm, capo, difficulty, genre, chords };
+    const updated = {
+      title,
+      artist,
+      album,
+      key,
+      bpm,
+      capo,
+      difficulty,
+      genre,
+      chords,
+    };
     const res = await fetch(`/Songs/${id}`, {
       method: "PUT",
       headers: { "Content-type": "application/json" },
@@ -52,17 +76,42 @@ export const EditSongPage = () => {
       <table>
         <thead>
           <tr>
-            <th>Title</th><th>Artist</th><th>Album</th><th>Key</th>
-            <th>BPM</th><th>Capo</th><th>Difficulty</th><th>Genre</th><th>Chords</th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th>Key</th>
+            <th>BPM</th>
+            <th>Capo</th>
+            <th>Difficulty</th>
+            <th>Genre</th>
+            <th>Chords</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><input type="text" value={title} onChange={e => settitle(e.target.value)} /></td>
-            <td><input type="text" value={artist} onChange={e => setartist(e.target.value)} /></td>
-            <td><input type="text" value={album} onChange={e => setalbum(e.target.value)} /></td>
             <td>
-              <select value={key} onChange={e => setkey(e.target.value)}>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => settitle(e.target.value)}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                value={artist}
+                onChange={(e) => setartist(e.target.value)}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                value={album}
+                onChange={(e) => setalbum(e.target.value)}
+              />
+            </td>
+            <td>
+              <select value={key} onChange={(e) => setkey(e.target.value)}>
                 <option value="C">C</option>
                 <option value="C#">C#</option>
                 <option value="D">D</option>
@@ -77,16 +126,52 @@ export const EditSongPage = () => {
                 <option value="B">B</option>
               </select>
             </td>
-            <td><input type="number" value={bpm} onChange={e => setbpm(e.target.valueAsNumber)} /></td>
-            <td><input type="number" value={capo} onChange={e => setcapo(e.target.valueAsNumber)} /></td>
-            <td><input type="number" value={difficulty} onChange={e => setdifficulty(e.target.valueAsNumber)} /></td>
             <td>
-              <select value={genre} onChange={e => setgenre(Array.from(e.target.selectedOptions, o => o.value))}>
-                {genre_data.map(g => <option key={g.genre_id} value={g.name}>{g.name}</option>)}
+              <input
+                type="number"
+                value={bpm}
+                onChange={(e) => setbpm(e.target.valueAsNumber)}
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                value={capo}
+                onChange={(e) => setcapo(e.target.valueAsNumber)}
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                value={difficulty}
+                onChange={(e) => setdifficulty(e.target.valueAsNumber)}
+              />
+            </td>
+            <td>
+              <select
+                value={genre}
+                onChange={(e) =>
+                  setgenre(Array.from(e.target.selectedOptions, (o) => o.value))
+                }
+              >
+                {genre_data.map((g) => (
+                  <option key={g._id} value={g.name}>
+                    {g.name}
+                  </option>
+                ))}
               </select>
             </td>
-            <td><input type="text" value={chords} onChange={e => setchords(e.target.value)} placeholder="e.g. Am, C, G" /></td>
-            <td className="no-border-row"><button onClick={editSong}>Save</button></td>
+            <td>
+              <input
+                type="text"
+                value={chords}
+                onChange={(e) => setchords(e.target.value)}
+                placeholder="e.g. Am, C, G"
+              />
+            </td>
+            <td className="no-border-row">
+              <button onClick={editSong}>Save</button>
+            </td>
           </tr>
         </tbody>
       </table>
