@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import SongTable from "../components/SongTable";
-import { Link } from "react-router-dom";
 import Table from "../components/Table";
 import { student_data, student_columns } from "../mockData";
 
-function HomePage({ setSongToEdit }) {
+function StudentPage() {
   const [songs, setSongs] = useState([]);
   //const navigate = useNavigate()
 
@@ -31,4 +28,4 @@ function HomePage({ setSongToEdit }) {
   );
 }
 
-export default HomePage;
+export default StudentPage;

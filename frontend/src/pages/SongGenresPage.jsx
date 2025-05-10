@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Table from "../components/Table";
-import { genre_data, genre_columns } from "../mockData";
+import { song_data, song_columns } from "../mockData";
 
-function GenrePage({ setSongToEdit }) {
+function SongGenres() {
   const [songs, setSongs] = useState([]);
   //const navigate = useNavigate()
 
@@ -20,13 +20,13 @@ function GenrePage({ setSongToEdit }) {
 
   return (
     <>
-      <h2>Available Genres</h2>
-      <p>Browse Available Songs by Genre, Artist, Relase Year, etc</p>
-      <p>Save Your Progress Using Your Student ID</p>
-
-      <Table items={genre_data} columns={genre_columns} />
+      <h2>Student Songs</h2>
+      <p>
+        View Songs Assigned to students and whether they have been learned yet
+      </p>
+      <Table items={song_data} columns={song_columns} controls={true} />
     </>
   );
 }
 
-export default GenrePage;
+export default SongGenres;

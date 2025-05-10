@@ -1,7 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import SongTable from "../components/SongTable";
-import { Link } from "react-router-dom";
 import Table from "../components/Table";
 import { label_data, label_columns } from "../mockData";
 

@@ -8,7 +8,7 @@ function Delete({ SongId, onDelete }) {
   return (
     <div>
       <TiTrash  onClick={() => onDelete(SongId)} />
-            
+
     </div>
   );
 }

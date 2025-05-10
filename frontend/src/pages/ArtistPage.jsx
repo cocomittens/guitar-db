@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import SongTable from "../components/SongTable";
-import { Link } from "react-router-dom";
 import Table from "../components/Table";
 import { artist_data, artist_columns } from "../mockData";
 
-function ArtistPage({ setSongToEdit }) {
+function ArtistPage() {
   const [songs, setSongs] = useState([]);
   //const navigate = useNavigate()
 
