@@ -39,8 +39,8 @@ export const song_data = [
 
 export const song_columns = [
   "Song ID",
-  "Album ID",
   "Title",
+  "Album",
   "BPM",
   "Difficulty",
   "Capo",

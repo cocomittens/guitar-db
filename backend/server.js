@@ -19,8 +19,15 @@ app.use(express.json()); // this is needed for post requests, good thing to know
 // Songs table
 app.get("/songs", async (req, res) => {
   try {
-    const query = "SELECT * FROM Songs;";
+    const query = `
+      SELECT 
+        Songs.*, 
+        Albums.title AS album_name 
+      FROM Songs
+      LEFT JOIN Albums ON Songs.album_id = Albums.album_id;
+    `;
     const [rows] = await db.query(query);
+    console.log(rows);
     res.status(200).json(rows);
   } catch (error) {
     console.error("Error executing queries:", error);
@@ -45,8 +52,7 @@ app.get("/songs/:id", async (req, res) => {
 });
 
 app.post("/songs", async (req, res) => {
-  const { title, artist, album, key, bpm, capo, difficulty, genre, chords } =
-    req.body;
+  const { title, album, key, bpm, capo, difficulty, genre, chords } = req.body;
   try {
     const query = `INSERT INTO Songs (title, album, musical_key, bpm, capo, difficulty, genre, chords) VALUES (${title}, ${album}, ${key}, ${bpm}, ${capo}, ${difficulty}, ${genre}, ${chords});`;
     const [result] = await db.query(query, [
@@ -154,6 +160,22 @@ app.get("/albums", async (req, res) => {
   } catch (error) {
     console.error("Error executing queries:", error);
     res.status(500).send("Could not retrieve albums from the database.");
+  }
+});
+
+app.get("/albums/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const query = `SELECT * FROM Albums WHERE album_id = ${id};`;
+    const [rows] = await db.query(query, [id]);
+    if (rows.length > 0) {
+      res.status(200).json(rows[0]);
+    } else {
+      res.status(404).send("Album not found.");
+    }
+  } catch (error) {
+    console.error("Error executing queries:", error);
+    res.status(500).send("Could not retrieve album from the database.");
   }
 });
 
