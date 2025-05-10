@@ -90,6 +90,22 @@ app.put("/songs/:id", async (req, res) => {
   }
 });
 
+app.delete("/songs/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const query = `DELETE FROM Songs WHERE song_id = ?;`;
+    const [result] = await db.query(query, [id]);
+    if (result.affectedRows > 0) {
+      res.status(200).send("Song deleted successfully.");
+    } else {
+      res.status(404).send("Song not found.");
+    }
+  } catch (error) {
+    console.error("Error executing queries:", error);
+    res.status(500).send("Could not delete song from the database.");
+  }
+});
+
 // Tell express what port to listen on
 app.listen(PORT, function () {
   console.log(
