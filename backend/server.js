@@ -27,15 +27,29 @@ app.get("/songs", async (req, res) => {
   }
 });
 
+app.get("/songs/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const query = `SELECT * FROM Songs WHERE song_id = ${id};`;
+    const [rows] = await db.query(query, [id]);
+    if (rows.length > 0) {
+      res.status(200).json(rows[0]);
+    } else {
+      res.status(404).send("Song not found.");
+    }
+  } catch (error) {
+    console.error("Error executing queries:", error);
+    res.status(500).send("Could not retrieve song from the database.");
+  }
+});
+
 app.post("/songs", async (req, res) => {
   const { title, artist, album, key, bpm, capo, difficulty, genre, chords } =
     req.body;
   try {
-    const query =
-      "INSERT INTO Songs (title, artist, album, `key`, bpm, capo, difficulty, genre, chords) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    const query = `INSERT INTO Songs (title, album, musical_key, bpm, capo, difficulty, genre, chords) VALUES (${title}, ${album}, ${key}, ${bpm}, ${capo}, ${difficulty}, ${genre}, ${chords});`;
     const [result] = await db.query(query, [
       title,
-      artist,
       album,
       key,
       bpm,
@@ -53,23 +67,22 @@ app.post("/songs", async (req, res) => {
 
 app.put("/songs/:id", async (req, res) => {
   const { id } = req.params;
-  const { title, artist, album, key, bpm, capo, difficulty, genre, chords } =
-    req.body;
+  const { title, musical_key, bpm, capo, difficulty, chords } = req.body;
+  console.log(musical_key);
   try {
-    const query =
-      "UPDATE Songs SET title = ?, artist = ?, album = ?, `key` = ?, bpm = ?, capo = ?, difficulty = ?, genre = ?, chords = ? WHERE song_id = ?;";
-    await db.query(query, [
-      title,
-      artist,
-      album,
-      key,
-      bpm,
-      capo,
-      difficulty,
-      genre,
-      chords,
-      id,
-    ]);
+    const query = `
+    UPDATE Songs
+    SET title = ?, 
+        musical_key = ?, 
+        bpm = ?, 
+        capo = ?, 
+        difficulty = ?, 
+        chords = ?
+    WHERE song_id = ?;
+  `;
+
+    const values = [title, "C", bpm, capo, difficulty, chords, id];
+    const [result] = await db.query(query, values);
     res.status(200).send("Song updated successfully.");
   } catch (error) {
     console.error("Error executing queries:", error);

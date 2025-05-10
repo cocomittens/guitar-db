@@ -46,16 +46,15 @@ export const EditSongPage = () => {
   const editSong = async () => {
     const updated = {
       title,
-      artist,
       album,
-      key,
+      musical_key: key,
       bpm,
       capo,
       difficulty,
       genre,
       chords,
     };
-    const res = await fetch(`/songs/${id}`, {
+    const res = await fetch(`http://localhost:30594/songs/${id}`, {
       method: "PUT",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(updated),
