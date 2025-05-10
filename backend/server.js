@@ -8,7 +8,7 @@ const app = express();
 const cors = require("cors");
 
 // Set a port in the range: 1024 < PORT < 65535
-const PORT = 30593;
+const PORT = 30594;
 
 // If on FLIP or classwork, use cors() middleware to allow cross-origin requests from the frontend with your port number:
 // EX (local): http://localhost:5173
@@ -16,32 +16,64 @@ const PORT = 30593;
 app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json()); // this is needed for post requests, good thing to know
 
-// Route handler
-app.get("/", async (req, res) => {
+app.get("/songs", async (req, res) => {
   try {
-    // Define queries
-    const query1 = "DROP TABLE IF EXISTS diagnostic;";
-    const query2 =
-      "CREATE TABLE diagnostic(id INT PRIMARY KEY AUTO_INCREMENT, text VARCHAR(255) NOT NULL);";
-    const query3 = `INSERT INTO diagnostic (text) VALUES ("MySQL and React is working for ${MY_ONID}!")`;
-    const query4 = "SELECT * FROM diagnostic;";
-
-    // Execute the queries
-    await db.query(query1);
-    await db.query(query2);
-    await db.query(query3);
-
-    // Get the results
-    const [rows] = await db.query(query4);
-
-    // Send back the results in JSON
+    const query = "SELECT * FROM Songs;";
+    const [rows] = await db.query(query);
     res.status(200).json(rows);
   } catch (error) {
     console.error("Error executing queries:", error);
-    // Send a generic error message to the browser
-    res
-      .status(500)
-      .send("An error occurred while executing the database queries.");
+    res.status(500).send("Could not retrieve songs from the database.");
+  }
+});
+
+app.post("/songs", async (req, res) => {
+  const { title, artist, album, key, bpm, capo, difficulty, genre, chords } =
+    req.body;
+  try {
+    const query =
+      "INSERT INTO Songs (title, artist, album, `key`, bpm, capo, difficulty, genre, chords) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    const [result] = await db.query(query, [
+      title,
+      artist,
+      album,
+      key,
+      bpm,
+      capo,
+      difficulty,
+      genre,
+      chords,
+    ]);
+    res.status(201).json({ id: result.insertId });
+  } catch (error) {
+    console.error("Error executing queries:", error);
+    res.status(500).send("Could not add song to the database.");
+  }
+});
+
+app.put("/songs/:id", async (req, res) => {
+  const { id } = req.params;
+  const { title, artist, album, key, bpm, capo, difficulty, genre, chords } =
+    req.body;
+  try {
+    const query =
+      "UPDATE Songs SET title = ?, artist = ?, album = ?, `key` = ?, bpm = ?, capo = ?, difficulty = ?, genre = ?, chords = ? WHERE song_id = ?;";
+    await db.query(query, [
+      title,
+      artist,
+      album,
+      key,
+      bpm,
+      capo,
+      difficulty,
+      genre,
+      chords,
+      id,
+    ]);
+    res.status(200).send("Song updated successfully.");
+  } catch (error) {
+    console.error("Error executing queries:", error);
+    res.status(500).send("Could not update song in the database.");
   }
 });
 

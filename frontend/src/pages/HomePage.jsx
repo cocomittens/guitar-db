@@ -10,9 +10,12 @@ function HomePage({ setSongToEdit }) {
   /*Per MDN, default fetch() request is GET, adding redundant '{method: 'GET'}'
     for illustrative purposes*/
   const loadSongs = async () => {
-    const response = await fetch("/Songs", { method: "GET" });
+    const response = await fetch("http://localhost:30594/songs", {
+      method: "GET",
+    });
     const data = await response.json();
     setSongs(data);
+    console.log(data);
   };
 
   useEffect(() => {
@@ -27,7 +30,7 @@ function HomePage({ setSongToEdit }) {
       <Link to="/create-Song">
         <button style={{ marginBottom: "1rem" }}>Create Song</button>
       </Link>
-      <Table items={song_data} columns={song_columns} controls={true} />
+      <Table items={songs} columns={song_columns} controls={true} />
     </>
   );
 }

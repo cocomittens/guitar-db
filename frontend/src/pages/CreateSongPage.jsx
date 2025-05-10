@@ -16,7 +16,17 @@ export const AddSongPage = () => {
   const navigate = useNavigate();
 
   const addSong = async () => {
-    const newSong = { title, artist, album, key, bpm, capo, difficulty, genre, chords };
+    const newSong = {
+      title,
+      artist,
+      album,
+      key,
+      bpm,
+      capo,
+      difficulty,
+      genre,
+      chords,
+    };
     const response = await fetch("/Songs", {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -33,19 +43,22 @@ export const AddSongPage = () => {
   return (
     <div>
       <h2>Log New Song Below</h2>
-      <p>Release Year should be in YYYY format. Insert chords separated by commas.</p>
+      <p>
+        Release Year should be in YYYY format. Insert chords separated by
+        commas.
+      </p>
       <table>
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Artist</th>
             <th>Album</th>
-            <th>Key</th>
-            <th>BPM</th>
-            <th>Capo</th>
-            <th>Difficulty</th>
             <th>Genre</th>
+            <th>Artist</th>
+            <th>Title</th>
+            <th>BPM</th>
+            <th>Difficulty</th>
+            <th>Capo</th>
             <th>Chords</th>
+            <th>Key</th>
           </tr>
         </thead>
         <tbody>
@@ -53,10 +66,26 @@ export const AddSongPage = () => {
             <td>
               <input
                 type="text"
-                id="Song title"
-                value={title}
-                onChange={(e) => settitle(e.target.value)}
+                value={album}
+                onChange={(e) => setalbum(e.target.value)}
               />
+            </td>
+            <td>
+              <select
+                multiple
+                value={genre}
+                onChange={(e) =>
+                  setgenre(
+                    Array.from(e.target.selectedOptions, (opt) => opt.value)
+                  )
+                }
+              >
+                {genre_data.map((g) => (
+                  <option key={g._id} value={g.name}>
+                    {g.name}
+                  </option>
+                ))}
+              </select>
             </td>
             <td>
               <input
@@ -68,16 +97,40 @@ export const AddSongPage = () => {
             <td>
               <input
                 type="text"
-                value={album}
-                onChange={(e) => setalbum(e.target.value)}
+                value={title}
+                onChange={(e) => settitle(e.target.value)}
               />
             </td>
             <td>
-              <select
+              <input
+                type="number"
+                value={bpm}
+                onChange={(e) => setbpm(e.target.valueAsNumber)}
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                value={difficulty}
+                onChange={(e) => setdifficulty(e.target.valueAsNumber)}
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                value={capo}
+                onChange={(e) => setcapo(e.target.valueAsNumber)}
+              />
+            </td>
+            <td>
+              <input
                 type="text"
-                value={key}
-                onChange={(e) => setkey(e.target.value)}
-              >
+                value={chords}
+                onChange={(e) => setchords(e.target.value)}
+              />
+            </td>
+            <td>
+              <select value={key} onChange={(e) => setkey(e.target.value)}>
                 <option value="C">C</option>
                 <option value="C#">C#</option>
                 <option value="D">D</option>
@@ -91,47 +144,6 @@ export const AddSongPage = () => {
                 <option value="A#">A#</option>
                 <option value="B">B</option>
               </select>
-            </td>
-            <td>
-              <input
-                type="number"
-                value={bpm}
-                onChange={(e) => setbpm(e.target.valueAsNumber)}
-              />
-            </td>
-            <td>
-              <input
-                type="number"
-                value={capo}
-                onChange={(e) => setcapo(e.target.valueAsNumber)}
-              />
-            </td>
-            <td>
-              <input
-                type="number"
-                value={difficulty}
-                onChange={(e) => setdifficulty(e.target.valueAsNumber)}
-              />
-            </td>
-            <td>
-              <select
-                type="text"
-                value={genre}
-                onChange={(e) => setgenre(Array.from(e.target.selectedOptions, opt => opt.value))}
-              >
-                {genre_data.map(g => (
-                  <option key={g.genre_id} value={g.name}>
-                    {g.name}
-                  </option>
-                ))}
-              </select>
-            </td>
-            <td>
-              <input
-                type="text"
-                value={chords}
-                onChange={(e) => setchords(e.target.value)}
-              />
             </td>
             <td classtitle="no-border-row">
               <button onClick={addSong}>Add</button>

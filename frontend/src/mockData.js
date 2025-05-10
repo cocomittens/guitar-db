@@ -39,15 +39,13 @@ export const song_data = [
 
 export const song_columns = [
   "Song ID",
-  "Album",
-  "Genre",
-  "Artist",
+  "Album ID",
   "Title",
   "BPM",
   "Difficulty",
   "Capo",
-  "Chords",
   "Key",
+  "Chords",
 ];
 
 export const student_data = [

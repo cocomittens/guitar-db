@@ -9,7 +9,7 @@ function SongGenres() {
   /*Per MDN, default fetch() request is GET, adding redundant '{method: 'GET'}'
     for illustrative purposes*/
   const loadSongs = async () => {
-    const response = await fetch("/Songs", { method: "GET" });
+    const response = await fetch("/songs", { method: "GET" });
     const data = await response.json();
     setSongs(data);
   };
