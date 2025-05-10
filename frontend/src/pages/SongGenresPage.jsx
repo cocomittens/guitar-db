@@ -20,11 +20,9 @@ function SongGenres() {
 
   return (
     <>
-      <h2>Student Songs</h2>
-      <p>
-        View Songs Assigned to students and whether they have been learned yet
-      </p>
-      <Table items={song_genres_data} columns={song_columns} controls={true} />
+      <h2>Song Genres</h2>
+      <p>View Genre(s) for each song.</p>
+      <Table items={song_genres_data} columns={song_genres_columns} />
     </>
   );
 }

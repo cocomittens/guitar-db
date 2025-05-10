@@ -10,6 +10,7 @@ import GenrePage from "./pages/GenrePage";
 import ArtistPage from "./pages/ArtistPage";
 import AlbumPage from "./pages/AlbumPage";
 import SongStudents from "./pages/SongStudentsPage";
+import SongGenres from "./pages/SongGenresPage";
 
 function App() {
   return (
@@ -32,10 +33,11 @@ function App() {
           <Route path="/edit-Song/:id" element={<EditSongPage />}></Route>
           <Route path="/labels" element={<LabelPage />}></Route>
           <Route path="/students" element={<StudentPage />}></Route>
-          <Route path="/genres" element={<GenrePage />}></Route> 
-          <Route path="/artists" element={<ArtistPage />}></Route> 
+          <Route path="/genres" element={<GenrePage />}></Route>
+          <Route path="/artists" element={<ArtistPage />}></Route>
           <Route path="/albums" element={<AlbumPage />}></Route>
           <Route path="/song-students" element={<SongStudents />}></Route>
+          <Route path="/song-genres" element={<SongGenres />}></Route>
         </Routes>
       </Router>
 

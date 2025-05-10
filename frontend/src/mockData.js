@@ -226,3 +226,19 @@ export const song_students_columns = [
   "Student Name",
   "Learned",
 ];
+
+export const song_genres_data = [
+  {
+    song_id: 1,
+    genre_id: 3,
+  },
+  {
+    song_id: 2,
+    genre_id: 2,
+  },
+  {
+    song_id: 3,
+    genre_id: 1,
+  },
+];
+export const song_genres_columns = ["Song ID", "Genre ID"];
