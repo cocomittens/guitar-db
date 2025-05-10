@@ -27,7 +27,6 @@ app.get("/songs", async (req, res) => {
       LEFT JOIN Albums ON Songs.album_id = Albums.album_id;
     `;
     const [rows] = await db.query(query);
-    console.log(rows);
     res.status(200).json(rows);
   } catch (error) {
     console.error("Error executing queries:", error);
@@ -128,10 +127,18 @@ app.get("/students", async (req, res) => {
 // Song Students table
 app.get("/student_songs", async (req, res) => {
   try {
-    const query = "SELECT * FROM Song_Students;";
-    const [rows] = await db
-      .query(query)
-      .catch((err) => console.error("Error executing queries:", err));
+    const query = `
+      SELECT 
+        Song_Students.song_id,
+        Song_Students.student_id, 
+        Songs.title AS song_title,
+        CONCAT(Students.first_name, ' ', Students.last_name) AS student_name,
+        Song_Students.is_learned
+      FROM Song_Students
+      LEFT JOIN Students ON Song_Students.student_id = Students.student_id
+      LEFT JOIN Songs ON Song_Students.song_id = Songs.song_id;
+    `;
+    const [rows] = await db.query(query);
     res.status(200).json(rows);
   } catch (error) {
     console.error("Error executing queries:", error);
@@ -160,22 +167,6 @@ app.get("/albums", async (req, res) => {
   } catch (error) {
     console.error("Error executing queries:", error);
     res.status(500).send("Could not retrieve albums from the database.");
-  }
-});
-
-app.get("/albums/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const query = `SELECT * FROM Albums WHERE album_id = ${id};`;
-    const [rows] = await db.query(query, [id]);
-    if (rows.length > 0) {
-      res.status(200).json(rows[0]);
-    } else {
-      res.status(404).send("Album not found.");
-    }
-  } catch (error) {
-    console.error("Error executing queries:", error);
-    res.status(500).send("Could not retrieve album from the database.");
   }
 });
 

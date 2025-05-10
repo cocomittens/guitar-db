@@ -10,7 +10,11 @@ function SongStudents({ setSongToEdit }) {
       method: "GET",
     });
     const data = await response.json();
-    setSongStudents(data);
+    const updatedSongStudents = data.map(({ is_learned, ...song_student }) => ({
+      ...song_student,
+      learned: is_learned > 0 ? "Yes" : "No",
+    }));
+    setSongStudents(updatedSongStudents);
   };
 
   useEffect(() => {
