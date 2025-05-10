@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Table from "../components/Table";
-import { student_data, student_columns } from "../mockData";
+import { student_columns } from "../mockData";
 
 function StudentPage() {
   const [students, setStudents] = useState([]);

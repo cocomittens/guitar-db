@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Table from "../components/Table";
-import { artist_data, artist_columns } from "../mockData";
+import { artist_columns } from "../mockData";
 
 function ArtistPage() {
   const [artists, setArtists] = useState([]);

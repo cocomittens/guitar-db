@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Table from "../components/Table";
-import { label_data, label_columns } from "../mockData";
+import { label_columns } from "../mockData";
 
 function LabelPage({ setSongToEdit }) {
   const [labels, setLabels] = useState([]);

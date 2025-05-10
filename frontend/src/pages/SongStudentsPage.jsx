@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Table from "../components/Table";
-import { song_students_data, song_students_columns } from "../mockData";
+import { song_students_columns } from "../mockData";
 
 function SongStudents({ setSongToEdit }) {
   const [songStudents, setSongStudents] = useState([]);
